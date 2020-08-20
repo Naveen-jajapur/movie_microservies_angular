@@ -1,0 +1,140 @@
+<div class="book-ticket-main">
+    <br>
+    <form class="container panel-default col-md-4">
+        <div class="form-group" *ngIf="checkAuthentication0" align="center">
+            <img src="../assets/img/user.png" alt="" width="220" height="100"><br> Username : <input type="text" name="uname" [(ngModel)]="username" placeholder="enter your username" required><br><br> Password : <input type="password" name="pass" [(ngModel)]="password"
+                placeholder="enter password" required><br><br>
+            <!-- <input type="button" value="submit" (click)="validate()">  -->
+            <button type="submit" class="btn btn-success" (click)='validate()'>Login</button>&nbsp;&nbsp;&nbsp;
+            <button type="reset" class="btn btn-danger">Cancel</button>
+        </div>
+        <br>
+        <div align="center">
+            <div *ngIf="checkAuthentication1">
+                Welcome !!
+                <div>
+                    <img src="../assets/img/city.png" alt="" width="50" height="50">
+                    <h2><i>Select a city</i></h2>
+                    <div>
+                        <ng-container *ngFor="let city of cities">&nbsp;
+                            <input type="submit" class="button" value={{city.cityNames}} (click)="selectCity(city.cityNames)">
+                        </ng-container>
+                    </div>
+                    <br>
+
+                    <div *ngIf="checkTheatre">
+                        <h2><i>select a theatre</i></h2>
+                        <ng-container *ngFor="let theatre of theatres">&nbsp;
+                            <input type="submit" value={{theatre.theatreName}} class="button2" (click)="selectTheatre(theatre.theatreName)">
+                        </ng-container>
+                    </div>
+                    <br>
+
+                    <div *ngIf="checkMovies">
+                        <h2><i>select a Movie</i></h2>
+                        <ng-container *ngFor="let movie of movie_details">&nbsp;
+                            <input type="submit" value={{movie.movie}} class="button3" (click)="selectMovie(movie.movie)">
+                        </ng-container>
+                    </div>
+                    <br>
+
+                    <div *ngIf="checkShows">
+                        <h2><i>select a show</i></h2>
+                        <table border="2" cellspacing="5" cellpadding="5">
+                            <tr *ngFor="let shows of show_details">
+                                <td><input type="submit" value={{shows.show}} class="button4" (click)="selectShow(shows.show)"></td>
+                                <td>{{shows.timings}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+
+                    <div *ngIf="checkLanguage">
+                        <h2><i>select a language</i></h2>
+                        <ng-container *ngFor="let languages of language_details">&nbsp;
+                            <input type="submit" value={{languages.language}} class="button5" (click)="selectLanguage(languages.language)">
+
+                        </ng-container>
+                    </div>
+                    <br>
+
+                    <div *ngIf="checkSeats">
+                        <h2><i>Select a seat</i></h2>
+                        <table border="2" cellspacing="5" cellpadding="5">
+                            <tr>
+                                <th>Seat Type</th>
+                                <th>Available Seats</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr *ngFor="let seat of seats">
+                                <td><input type="submit" value={{seat.seatType}} (click)="chosenSeat(seat)"></td>
+                                <td>{{seat.availableSeats}}</td>
+                                <td>{{seat.price}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div *ngIf="check">
+                        Please enter the no. of seats to be booked : <input type="text" name="seatsBooked" placeholder="enter no. of seats" [(ngModel)]="no_of_seats" required><br>
+                        <input type="submit" value="submit" class="button6" (click)="no_of_seats_selected()">
+                    </div>
+                    <br>
+
+                    <div *ngIf="check1">
+                        <h2>Your total amount is : {{total_amount}}</h2>
+                        <br> Please enter your account no. : <input type="text" name="account" [(ngModel)]="accountNo" required><br>
+                        <input type="submit" value="submit" class="button7" (click)="entered_accountNo()">
+                    </div>
+
+                    <div *ngIf="check5">
+                        <h2>please enter a valid amount of seats to be booked!!</h2>
+                    </div>
+                    <br>
+
+                    <div *ngIf="check2">
+                        <h2>sorry, you won't have sufficient account balance</h2>
+                    </div>
+                    <br>
+
+                    <div *ngIf="check3">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>City</th>
+                                    <th>Theatre</th>
+                                    <th>Movie</th>
+                                    <th>Show</th>
+                                    <th> Language</th>
+                                    <th> Seat Type</th>
+                                    <th> Seats Booked</th>
+                                    <th> Total</th>
+                                    <th> Message </th>
+                                </tr>
+
+                                <tr>
+                                    <td>{{booking_slip.city}}</td>
+                                    <td>{{booking_slip.theatre}}</td>
+                                    <td>{{booking_slip.movie}}</td>
+                                    <td>{{booking_slip.show}}</td>
+                                    <td>{{booking_slip.language}}</td>
+                                    <td>{{booking_slip.seatType}}</td>
+                                    <td>{{booking_slip.seatsBooked}}</td>
+                                    <td>{{booking_slip.amount}}</td>
+                                    <td>{{payment_message}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+
+                    <div *ngIf="check4">
+                        <h2>sorry, entered account number is not correct or does not exist!!</h2>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+
+            <div *ngIf="checkAuthentication2" align="center">
+                Not a registered user !!
+            </div>
